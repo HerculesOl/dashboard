@@ -3,85 +3,103 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
-}
-
-header, footer {
+    color: #333;
+  }
+  
+  .dark-theme {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+    /* Heurística 10 (Reconhecimento e Respeito à Diversidade do Usuário) - Tema escuro para preferência do usuário */
+  }
+  
+  header {
     background: #333;
     color: #fff;
     padding: 10px 0;
     text-align: center;
-}
-
-nav ul {
+    position: relative;
+  }
+  
+  header h1 {
+    margin: 0;
+  }
+  
+  #toggle-tema {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    /* Heurística 7 (Flexibilidade e Eficiência de Uso) - Alternância de tema fácil de acessar */
+  }
+  
+  nav ul {
     list-style: none;
     padding: 0;
-}
-
-nav ul li {
+  }
+  
+  nav ul li {
     display: inline;
     margin: 0 15px;
-}
-
-nav a {
+  }
+  
+  nav a {
     color: #fff;
     text-decoration: none;
-}
-
-main {
+  }
+  
+  main {
     padding: 20px;
-}
-
-section {
-    margin-bottom: 20px;
-    padding: 15px;
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.cards {
+  }
+  
+  .cards {
     display: flex;
     justify-content: space-around;
-}
-
-.card {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .card {
     background: #fff;
     padding: 15px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 30%;
     text-align: center;
-}
-
-button {
-    background-color: #333;
+  }
+  
+  section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  footer {
+    text-align: center;
+    padding: 15px 0;
+    background: #333;
     color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 5px 10px 5px 0;
-}
-
-button:hover {
-    background-color: #555;
-}
-
-.dark-theme {
-    background-color: #1e1e1e;
-    color: #eee;
-}
-
-.dark-theme header,
-.dark-theme footer,
-.dark-theme .card,
-.dark-theme section {
-    background-color: #2c2c2c;
-    color: #fff;
-}
-
-#mensagem-status {
-    color: green;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  /* Heurística 3 (Controle e Liberdade do Usuário) - Estilo de botões de ações */
+  .btn-group {
+    display: flex;
+    gap: 10px;
     margin-top: 10px;
-    display: none;
-}
+  }
+  
+  /* Heurística 6 (Reconhecimento em vez de Memorização) - Ajuste de cores */
+  .dark-theme .card,
+  .dark-theme section {
+    background: #2e2e2e;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+  
+  .dark-theme a {
+    color: #aad;
+  }
+  

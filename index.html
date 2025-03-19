@@ -1,128 +1,137 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Simples</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <title>Dashboard Simples</title>
 </head>
 <body>
-    <header>
-        <h1>Dashboard Simples</h1>
-        <nav>
-            <ul>
-                <li><a href="#home">Início</a></li>
-                <li><a href="#relatorios">Relatórios</a></li>
-                <li><a href="#configuracoes">Configurações</a></li>
-                <li><a href="#perfil">Perfil</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header>
+    <h1>Dashboard Simples</h1>
 
-    <main>
-        <section id="home">
-            <h2>Bem-vindo ao Dashboard</h2>
-            <div class="cards">
-                <div class="card">
-                    <h3>Usuários Ativos</h3>
-                    <p>150</p>
-                </div>
-                <div class="card">
-                    <h3>Vendas Hoje</h3>
-                    <p>30</p>
-                </div>
-                <div class="card">
-                    <h3>Feedbacks Recebidos</h3>
-                    <p>12</p>
-                </div>
-            </div>
-        </section>
+    <!-- Heurística 7 (Flexibilidade e Eficiência de Uso) - Alternar entre temas -->
+    <button id="toggle-tema">Alternar Tema</button>
 
-        <section id="relatorios">
-            <h2>Relatórios</h2>
-            <p>Selecione um relatório para visualizar:</p>
-            <select id="tipo-relatorio" title="Escolha o tipo de relatório">
-                <option value="">Selecione...</option>
-                <option value="vendas">Vendas</option>
-                <option value="usuarios">Usuários</option>
-            </select>
-            <button type="button" id="btn-relatorio" title="Clique para visualizar o relatório">Ver Relatório</button>
-            <div class="report-output" id="saida-relatorio"></div>
-        </section>
+    <nav>
+      <ul>
+        <li><a href="#home">Início</a></li>
+        <li><a href="#relatorios">Relatórios</a></li>
+        <li><a href="#configuracoes">Configurações</a></li>
+        <li><a href="#perfil">Perfil</a></li>
+      </ul>
+    </nav>
+  </header>
 
-        <section id="configuracoes">
-            <h2>Configurações</h2>
-            <form id="form-config">
-                <label for="email">E-mail <span title="Seu e-mail será usado para notificações.">❓</span></label>
-                <input type="email" id="email" name="email" placeholder="Digite seu e-mail" title="Digite seu e-mail para contato.">
+  <main>
+    <!-- Heurística 1 (Visibilidade do Status do Sistema) - Feedback visual de relatórios -->
+    <section id="home">
+      <h2>Bem-vindo ao Dashboard</h2>
+      <p>Visão geral dos dados importantes.</p>
+      <div class="cards">
+        <div class="card">
+          <h3>Usuários Ativos</h3>
+          <p>150</p>
+        </div>
+        <div class="card">
+          <h3>Vendas Hoje</h3>
+          <p>30</p>
+        </div>
+        <div class="card">
+          <h3>Feedbacks Recebidos</h3>
+          <p>12</p>
+        </div>
+      </div>
+    </section>
 
-                <label for="senha">Senha <span title="Sua senha deve conter pelo menos 6 caracteres.">❓</span></label>
-                <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
+    <!-- Heurística 2 (Correspondência entre o Sistema e o Mundo Real) - Terminologia acessível -->
+    <section id="relatorios">
+      <h2>Relatórios</h2>
+      <p>Selecione um relatório para visualizar:</p>
+      <select id="selecao-relatorio">
+        <option value="">Selecione...</option>
+        <option value="vendas">Vendas</option>
+        <option value="usuarios">Usuários</option>
+      </select>
+      <button type="button" id="btn-relatorio">Gerar Relatório</button>
+      <div class="report-output" id="saida-relatorio"></div>
+    </section>
 
-                <label for="tema">Tema:</label>
-                <select id="tema" title="Escolha o tema de exibição">
-                    <option value="claro">Claro</option>
-                    <option value="escuro">Escuro</option>
-                </select>
+    <!-- Heurística 5 (Prevenção de Erros) - Validação de campos -->
+    <section id="configuracoes">
+      <h2>Configurações</h2>
+      <form id="form-config">
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required/>
 
-                <div style="margin-top:10px;">
-                    <button type="submit" title="Clique para salvar">Salvar</button>
-                    <button type="reset" title="Cancelar alterações">Cancelar</button>
-                    <button type="button" id="aumentar-fonte" title="Aumentar tamanho da fonte">A+</button>
-                </div>
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required/>
 
-                <div id="mensagem-status"></div>
-            </form>
-        </section>
+        <div class="btn-group">
+          <button type="submit">Salvar Configurações</button>
+          <!-- Heurística 3 (Controle e Liberdade do Usuário) - Botão de cancelar -->
+          <button type="button" id="btn-cancelar">Cancelar</button>
+        </div>
+      </form>
+      <div id="mensagem-status"></div>
+    </section>
 
-        <section id="perfil">
-            <h2>Perfil do Usuário</h2>
-            <p>Nome: <span id="usuario-nome">João Silva</span></p>
-            <p>E-mail: <span id="usuario-email">joao@exemplo.com</span></p>
-            <button type="button" title="Editar informações do perfil">Editar Perfil</button>
-        </section>
-    </main>
+    <section id="perfil">
+      <h2>Perfil do Usuário</h2>
+      <p>Nome: <span id="usuario-nome">João Silva</span></p>
+      <p>E-mail: <span id="usuario-email">joao@exemplo.com</span></p>
+      <button type="button">Editar Perfil</button>
+    </section>
+  </main>
 
-    <footer>
-        <p>&copy; 2024 Dashboard Simples</p>
-    </footer>
+  <footer>
+    <p>&copy; 2024 Dashboard Simples</p>
+  </footer>
 
-    <script>
-        const statusMsg = document.getElementById("mensagem-status");
+  <script>
+    // Heurística 7 (Flexibilidade e Eficiência de Uso) - Alternância de tema (tema claro/escuro)
+    const toggleBtn = document.getElementById("toggle-tema");
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark-theme");
+    });
 
-        document.getElementById("form-config").addEventListener("submit", function(e) {
-            e.preventDefault();
-            const email = document.getElementById("email").value;
-            if (!email.includes("@")) {
-                alert("Por favor, insira um e-mail válido.");
-                return;
-            }
-            statusMsg.textContent = "Configurações salvas com sucesso!";
-            statusMsg.style.color = "green";
-            statusMsg.style.display = "block";
-            setTimeout(() => statusMsg.style.display = "none", 3000);
-        });
+    // Heurística 1 (Visibilidade do Status do Sistema) - Mensagem de feedback após gerar relatório
+    const btnRelatorio = document.getElementById("btn-relatorio");
+    btnRelatorio.addEventListener("click", () => {
+      const selecao = document.getElementById("selecao-relatorio").value;
+      const saida = document.getElementById("saida-relatorio");
+      if (!selecao) {
+        // Heurística 5 (Prevenção de Erros) - Evitar a falta de seleção
+        saida.innerHTML = "<p style='color:red;'>Por favor, selecione um relatório.</p>";
+      } else {
+        saida.innerHTML = `<p>Relatório de <strong>${selecao}</strong> gerado com sucesso!</p>`;
+      }
+    });
 
-        document.getElementById("btn-relatorio").addEventListener("click", () => {
-            const select = document.getElementById("tipo-relatorio");
-            const output = document.getElementById("saida-relatorio");
+    // Heurística 5 (Prevenção de Erros) - Validação no envio do formulário de configurações
+    const form = document.getElementById("form-config");
+    const msg = document.getElementById("mensagem-status");
 
-            if (!select.value) {
-                output.textContent = "Erro: selecione um tipo de relatório.";
-                output.style.color = "red";
-            } else {
-                output.textContent = `Relatório de ${select.options[select.selectedIndex].text} gerado com sucesso!`;
-                output.style.color = "green";
-            }
-        });
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const senha = document.getElementById("senha").value;
 
-        document.getElementById("tema").addEventListener("change", function() {
-            document.body.className = this.value === "escuro" ? "dark-theme" : "";
-        });
+      if (!email || !senha) {
+        // Heurística 5 (Prevenção de Erros) - Alerta de campos obrigatórios
+        msg.textContent = "Preencha todos os campos.";
+        msg.style.color = "red";
+      } else {
+        msg.textContent = "Configurações salvas com sucesso!";
+        msg.style.color = "green";
+      }
+    });
 
-        document.getElementById("aumentar-fonte").addEventListener("click", () => {
-            document.body.style.fontSize = "larger";
-        });
-    </script>
+    // Heurística 3 (Controle e Liberdade do Usuário) - Botão de Cancelar (limpar campos e mensagens)
+    document.getElementById("btn-cancelar").addEventListener("click", () => {
+      form.reset();
+      msg.textContent = "";
+    });
+  </script>
 </body>
 </html>
