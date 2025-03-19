@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Simples</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Dashboard Simples</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Início</a></li>
+                <li><a href="#relatorios">Relatórios</a></li>
+                <li><a href="#configuracoes">Configurações</a></li>
+                <li><a href="#perfil">Perfil</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <h2>Bem-vindo ao Dashboard</h2>
+            <div class="cards">
+                <div class="card">
+                    <h3>Usuários Ativos</h3>
+                    <p>150</p>
+                </div>
+                <div class="card">
+                    <h3>Vendas Hoje</h3>
+                    <p>30</p>
+                </div>
+                <div class="card">
+                    <h3>Feedbacks Recebidos</h3>
+                    <p>12</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="relatorios">
+            <h2>Relatórios</h2>
+            <p>Selecione um relatório para visualizar:</p>
+            <select id="tipo-relatorio" title="Escolha o tipo de relatório">
+                <option value="">Selecione...</option>
+                <option value="vendas">Vendas</option>
+                <option value="usuarios">Usuários</option>
+            </select>
+            <button type="button" id="btn-relatorio" title="Clique para visualizar o relatório">Ver Relatório</button>
+            <div class="report-output" id="saida-relatorio"></div>
+        </section>
+
+        <section id="configuracoes">
+            <h2>Configurações</h2>
+            <form id="form-config">
+                <label for="email">E-mail <span title="Seu e-mail será usado para notificações.">❓</span></label>
+                <input type="email" id="email" name="email" placeholder="Digite seu e-mail" title="Digite seu e-mail para contato.">
+
+                <label for="senha">Senha <span title="Sua senha deve conter pelo menos 6 caracteres.">❓</span></label>
+                <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
+
+                <label for="tema">Tema:</label>
+                <select id="tema" title="Escolha o tema de exibição">
+                    <option value="claro">Claro</option>
+                    <option value="escuro">Escuro</option>
+                </select>
+
+                <div style="margin-top:10px;">
+                    <button type="submit" title="Clique para salvar">Salvar</button>
+                    <button type="reset" title="Cancelar alterações">Cancelar</button>
+                    <button type="button" id="aumentar-fonte" title="Aumentar tamanho da fonte">A+</button>
+                </div>
+
+                <div id="mensagem-status"></div>
+            </form>
+        </section>
+
+        <section id="perfil">
+            <h2>Perfil do Usuário</h2>
+            <p>Nome: <span id="usuario-nome">João Silva</span></p>
+            <p>E-mail: <span id="usuario-email">joao@exemplo.com</span></p>
+            <button type="button" title="Editar informações do perfil">Editar Perfil</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Dashboard Simples</p>
+    </footer>
+
+    <script>
+        const statusMsg = document.getElementById("mensagem-status");
+
+        document.getElementById("form-config").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const email = document.getElementById("email").value;
+            if (!email.includes("@")) {
+                alert("Por favor, insira um e-mail válido.");
+                return;
+            }
+            statusMsg.textContent = "Configurações salvas com sucesso!";
+            statusMsg.style.color = "green";
+            statusMsg.style.display = "block";
+            setTimeout(() => statusMsg.style.display = "none", 3000);
+        });
+
+        document.getElementById("btn-relatorio").addEventListener("click", () => {
+            const select = document.getElementById("tipo-relatorio");
+            const output = document.getElementById("saida-relatorio");
+
+            if (!select.value) {
+                output.textContent = "Erro: selecione um tipo de relatório.";
+                output.style.color = "red";
+            } else {
+                output.textContent = `Relatório de ${select.options[select.selectedIndex].text} gerado com sucesso!`;
+                output.style.color = "green";
+            }
+        });
+
+        document.getElementById("tema").addEventListener("change", function() {
+            document.body.className = this.value === "escuro" ? "dark-theme" : "";
+        });
+
+        document.getElementById("aumentar-fonte").addEventListener("click", () => {
+            document.body.style.fontSize = "larger";
+        });
+    </script>
+</body>
+</html>
