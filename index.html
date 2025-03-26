@@ -5,13 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="styles.css"/>
   <title>Dashboard Simples</title>
+  <style>
+    /* Adicionando espaço para a mensagem abaixo da seção */
+    #saida-relatorio {
+      margin-top: 20px;
+    }
+
+    #erro-relatorio {
+      color: red;
+      margin-top: 10px;
+    }
+
+    #sucesso-relatorio {
+      color: green;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
   <header>
     <h1>Dashboard Simples</h1>
 
     <!-- Heurística 7 (Flexibilidade e Eficiência de Uso) - Alternar entre temas -->
-    <button id="toggle-tema">Alternar Tema</button>
+    <button id="toggle-tema">
+      <img id="sun-icon" src="https://static.thenounproject.com/png/4066357-200.png" alt="Ícone Sol"/>
+      <img id="moon-icon" src="https://cdn-icons-png.flaticon.com/512/6714/6714978.png" alt="Ícone Lua"/>
+    </button>
 
     <nav>
       <ul>
@@ -54,10 +73,16 @@
         <option value="usuarios">Usuários</option>
       </select>
       <button type="button" id="btn-relatorio">Gerar Relatório</button>
+
+      <!-- Heurística 1 (Visibilidade do Status do Sistema) - Exibir o erro ou sucesso -->
       <div class="report-output" id="saida-relatorio"></div>
+
+      <!-- Heurística 5 (Prevenção de Erros) - Relatório de erros -->
+      <div id="erro-relatorio"></div>
+      <div id="sucesso-relatorio"></div> <!-- Nova div para sucesso -->
     </section>
 
-    <!-- Heurística 5 (Prevenção de Erros) - Validação de campos -->
+    <!-- Heurística 5 (Prevenção de Erros) - Validação no envio do formulário de configurações -->
     <section id="configuracoes">
       <h2>Configurações</h2>
       <form id="form-config">
@@ -69,7 +94,6 @@
 
         <div class="btn-group">
           <button type="submit">Salvar Configurações</button>
-          <!-- Heurística 3 (Controle e Liberdade do Usuário) - Botão de cancelar -->
           <button type="button" id="btn-cancelar">Cancelar</button>
         </div>
       </form>
@@ -85,53 +109,10 @@
   </main>
 
   <footer>
-    <p>&copy; 2024 Dashboard Simples</p>
+    <p>&copy; 2024 Hércules</p>
   </footer>
 
-  <script>
-    // Heurística 7 (Flexibilidade e Eficiência de Uso) - Alternância de tema (tema claro/escuro)
-    const toggleBtn = document.getElementById("toggle-tema");
-    toggleBtn.addEventListener("click", () => {
-      document.body.classList.toggle("dark-theme");
-    });
-
-    // Heurística 1 (Visibilidade do Status do Sistema) - Mensagem de feedback após gerar relatório
-    const btnRelatorio = document.getElementById("btn-relatorio");
-    btnRelatorio.addEventListener("click", () => {
-      const selecao = document.getElementById("selecao-relatorio").value;
-      const saida = document.getElementById("saida-relatorio");
-      if (!selecao) {
-        // Heurística 5 (Prevenção de Erros) - Evitar a falta de seleção
-        saida.innerHTML = "<p style='color:red;'>Por favor, selecione um relatório.</p>";
-      } else {
-        saida.innerHTML = `<p>Relatório de <strong>${selecao}</strong> gerado com sucesso!</p>`;
-      }
-    });
-
-    // Heurística 5 (Prevenção de Erros) - Validação no envio do formulário de configurações
-    const form = document.getElementById("form-config");
-    const msg = document.getElementById("mensagem-status");
-
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const email = document.getElementById("email").value;
-      const senha = document.getElementById("senha").value;
-
-      if (!email || !senha) {
-        // Heurística 5 (Prevenção de Erros) - Alerta de campos obrigatórios
-        msg.textContent = "Preencha todos os campos.";
-        msg.style.color = "red";
-      } else {
-        msg.textContent = "Configurações salvas com sucesso!";
-        msg.style.color = "green";
-      }
-    });
-
-    // Heurística 3 (Controle e Liberdade do Usuário) - Botão de Cancelar (limpar campos e mensagens)
-    document.getElementById("btn-cancelar").addEventListener("click", () => {
-      form.reset();
-      msg.textContent = "";
-    });
-  </script>
+  <!-- Inclusão do arquivo JS -->
+  <script src="script.js"></script>
 </body>
 </html>
